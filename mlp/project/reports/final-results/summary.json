@@ -1,0 +1,13 @@
+{
+  "selected_model": "lightgbm_63",
+  "seed": 173,
+  "fit_rows": 195842,
+  "tune_rows": 27978,
+  "audit_rows": 55926,
+  "full_train_rows": 279746,
+  "test_rows": 114538,
+  "selected_tune_macro_f1": 0.7354658461901837,
+  "selected_audit_macro_f1": 0.7380805366801599,
+  "cpu_only": true,
+  "external_data": false
+}

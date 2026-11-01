@@ -1,0 +1,52 @@
+[
+  {
+    "path": "project/notebooks/final.ipynb",
+    "bytes": 496061,
+    "sha256": "7f2e11f4c1335f3086eab928a50b803949d171d853c1d7c25952020c22194c69"
+  },
+  {
+    "path": "project/reports/final-results/audit_confusion.png",
+    "bytes": 46039,
+    "sha256": "e900c9191b831adfcbf67e0bb1fd2d73c6c468f2c94cad883aac5d76f71fa72b"
+  },
+  {
+    "path": "project/reports/final-results/correlations.png",
+    "bytes": 296326,
+    "sha256": "569b79c26a3592d8ae365bbc088446c4c557bd5d7693e87471b321f66e48823b"
+  },
+  {
+    "path": "project/reports/final-results/eda.png",
+    "bytes": 91092,
+    "sha256": "344783ebb4c81274f586e6a8860fade61b873c600860222b3db23cc046966004"
+  },
+  {
+    "path": "project/reports/final-results/executed-notebook-check.json",
+    "bytes": 186,
+    "sha256": "581725fa589720a153df8a48e816ebe8c5ecc245b84a89eea3ede5b09c9e6227"
+  },
+  {
+    "path": "project/reports/final-results/importance.png",
+    "bytes": 65801,
+    "sha256": "c2bf56f93bab765d95675db42c1f9ed7d16e342353b220a57921c812df93384b"
+  },
+  {
+    "path": "project/reports/final-results/kaggle-submission.json",
+    "bytes": 974,
+    "sha256": "024eafc31e398a442ac3071fe22346990cf700c348c2751acf82a91392e8d67d"
+  },
+  {
+    "path": "project/reports/final-results/model_comparison.csv",
+    "bytes": 726,
+    "sha256": "8ce2700e76dab19542cebf360218410d6681b33d42a0c2fca2bc6d32b36cef57"
+  },
+  {
+    "path": "project/reports/final-results/permutation_importance.csv",
+    "bytes": 8426,
+    "sha256": "4f90705527c32d5715fd83b6ca4812561016d609a79c2dfd22de8962164351ea"
+  },
+  {
+    "path": "project/reports/final-results/summary.json",
+    "bytes": 314,
+    "sha256": "0f682b489d794a308f61000255229fb754a936a8900eb25f7123212a5bef329d"
+  }
+]

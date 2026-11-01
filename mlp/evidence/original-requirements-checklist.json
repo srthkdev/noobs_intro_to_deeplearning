@@ -1,0 +1,43 @@
+{
+  "checked_on": "2026-10-30",
+  "guidelines": "https://bsc-iitm.github.io/mlp-project/guidelines.html",
+  "registered_notebook": "https://www.kaggle.com/code/sarthakiitmbs/23f3000839-notebook-2026t3",
+  "registration_deadline": "2026-11-01 23:59 IST",
+  "competition_cutoff": "strictly greater than 0.70 from the registered notebook",
+  "mandatory": {
+    "private_registered_notebook": "API metadata confirms private; original registered notebook updated in place",
+    "host_view_access": "Verified on Oct 29: iitmbscs2008p (Viewer), notebook private",
+    "registration_status": "IITM Google Forms receipt dated Oct 7 verified; exact registered notebook URL matches final notebook",
+    "cpu_only": "configured in kernel metadata; no accelerators used",
+    "no_external_data": "competition CSV files only",
+    "allowed_libraries": "built-ins, numpy, pandas, matplotlib, seaborn, scipy, sklearn, lightgbm, catboost",
+    "all_training_on_kaggle": "Completed registered notebook version 3 on Kaggle CPU; no local estimator results imported",
+    "eda": "missingness, univariate target/capacity, categorical bivariate, correlations",
+    "preprocessing": "reusable fit/transform builder and column pipeline, fit-only learned statistics",
+    "feature_engineering": "facility vocabulary, date intervals, age, capacity ratios, flags; permutation diagnostic",
+    "model_families": "linear log loss, Extra Trees, gradient boosting",
+    "tuning": "two motivated LightGBM capacities; early stopping on tune set; no leaderboard search",
+    "validation": "grouped stratified 70/10/20 fit/tune/audit partitions; disjoint profile hashes asserted",
+    "model_comparison": "training/tune F1 plus frozen audit F1 and accuracy",
+    "error_analysis": "per-class report, confusion matrix, metro/space-class errors, selected-model feature importance",
+    "final_refit": "Completed on all 279746 labelled rows with tuning-frozen LightGBM settings",
+    "submission": "COMPLETE: code submission 57777975 from registered notebook version 3",
+    "cutoff": "MET: actual public score 0.70158 > 0.70",
+    "milestones": "M1, M2, M3 and M4 submitted; response confirmations and IITM email receipts verified.",
+    "viva": "requires student's own preparation and participation"
+  },
+  "final_execution_version": 3,
+  "runtime_adjustment": "Version 2 stopped during costly Extra Trees fit; version 3 uses 80 trees, depth 20 and sqrt feature subsets, with the same split and tuning design.",
+  "milestone3_form": "https://docs.google.com/forms/d/e/1FAIpQLSfeKAzCHKxXgT9xWl0-0-w-tnqwVW762gcFhXdg_LiGTRPjgw/viewform",
+  "milestone3_deadline": "2026-10-29 23:59 IST",
+  "milestone3_status": "SUBMITTED AND EMAIL RECEIPT VERIFIED",
+  "final_result": {
+    "submission_id": 57777975,
+    "public_score": 0.70158,
+    "tune_macro_f1": 0.7354658461901837,
+    "audit_macro_f1": 0.7380805366801599
+  },
+  "milestone4_status": "SUBMITTED AND EMAIL RECEIPT VERIFIED",
+  "milestone4_form": "https://docs.google.com/forms/d/e/1FAIpQLSdkDnO7Ke7IgDE9wvH1SMn6gDbJJ8iWRtSNl2S3L5NTzN16Ug/viewform",
+  "milestone4_deadline": "2026-11-07 23:59 IST"
+}

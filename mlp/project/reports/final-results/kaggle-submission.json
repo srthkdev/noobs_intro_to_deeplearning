@@ -1,0 +1,27 @@
+{
+  "kernel": "sarthakiitmbs/23f3000839-notebook-2026t3",
+  "kernel_version": 3,
+  "script_version_id": 363546821,
+  "requested_utc": "2026-10-29T17:18:02.412130+00:00",
+  "output_sha256": "84c34c801c1cccc64b5eab929437f2c9dd8c3db567f62d001d4a5230b8132752",
+  "validation": "sample IDs/order, row count, valid classes, frozen tuning winner, CPU execution",
+  "api_response": {
+    "message": "",
+    "ref": 57777975
+  },
+  "submission": {
+    "ref": 57777975,
+    "totalBytes": 919746,
+    "date": "2026-10-29T17:18:02.817Z",
+    "description": "Final CPU experiment: tuning-selected LightGBM, grouped audit and full-data refit",
+    "errorDescription": null,
+    "fileName": "submission.csv",
+    "publicScore": "0.70158",
+    "privateScore": null,
+    "status": "COMPLETE",
+    "submittedBy": "sarthakiitmbs",
+    "submittedByRef": "sarthakiitmbs",
+    "teamName": "SARTHAK JAIN",
+    "url": "/code/sarthakiitmbs/23f3000839-notebook-2026t3?scriptVersionId=363546821"
+  }
+}

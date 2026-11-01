@@ -6,3 +6,8 @@ repo consists of jupyter notebooks, resources, roadmaps, practise code i have do
 ## Interactive GenAI project viva guide
 
 [Study the full project online](https://srthkdev.github.io/noobs_intro_to_deeplearning/) — concepts, actual model architectures, eight notebooks, code, W&B histories and evaluation evidence. [Browse the project files](genai-project/README.md).
+
+
+## MLP final notebook viva guide
+
+[Open the single-page MLP guide](https://srthkdev.github.io/noobs_intro_to_deeplearning/mlp/) — the complete executed final notebook with explanations beside its code and saved outputs, model results, concepts and viva questions. [Source and rebuild instructions](mlp/README.md).

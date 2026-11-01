@@ -1,0 +1,54 @@
+{
+  "renderer": "Jupyter nbconvert 7.16.6",
+  "notebook_sha256": "7f2e11f4c1335f3086eab928a50b803949d171d853c1d7c25952020c22194c69",
+  "original_cells": 15,
+  "original_code_cells": 7,
+  "original_output_items": 25,
+  "executed_for_guide": false,
+  "code_cells": [
+    {
+      "cell": 2,
+      "original_outputs": 2,
+      "rendered_outputs": 2,
+      "source_sha256": "51ff7c48099884d59fa73345e5a14e42b104bf8b84aefcedd77531009dd5717c"
+    },
+    {
+      "cell": 4,
+      "original_outputs": 7,
+      "rendered_outputs": 7,
+      "source_sha256": "296ea7b6facfb550695e4dceaa88332eb53cdaac96c06b7ae12839c000dea3e0"
+    },
+    {
+      "cell": 6,
+      "original_outputs": 2,
+      "rendered_outputs": 2,
+      "source_sha256": "b4bf8ca0a7ab73dcad8373001d1ad930eb41b6a236266e5bf5c5d80ea9a1f836"
+    },
+    {
+      "cell": 8,
+      "original_outputs": 1,
+      "rendered_outputs": 1,
+      "source_sha256": "97c3e1c571d8e7a7e7b43174fc0b6128c8a68e04536f0753ac5254cd3da2bccc"
+    },
+    {
+      "cell": 10,
+      "original_outputs": 3,
+      "rendered_outputs": 3,
+      "source_sha256": "a115c211fc7f3a7efcd3e1fd7b7269180b679795fd08872fc271b0b2b88c5e83"
+    },
+    {
+      "cell": 12,
+      "original_outputs": 7,
+      "rendered_outputs": 7,
+      "source_sha256": "7ccd3956b5f6820a60e099261505db0923e3a4fcd1f7bbcc33d0736fbd2379fe"
+    },
+    {
+      "cell": 14,
+      "original_outputs": 3,
+      "rendered_outputs": 3,
+      "source_sha256": "7f525f7247a82e1bfdd5865d0f2fbc5a98f6f5150aa029f59898a9d29d668f91"
+    }
+  ],
+  "glossary_entries": 40,
+  "viva_questions": 35
+}
