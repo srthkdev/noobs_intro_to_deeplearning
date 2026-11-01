@@ -1,2 +1,6 @@
 .venv
 .env
+
+.venv-guide/
+
+__pycache__/

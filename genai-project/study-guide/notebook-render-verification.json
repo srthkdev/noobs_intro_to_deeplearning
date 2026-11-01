@@ -1,0 +1,70 @@
+{
+  "renderer": "Jupyter nbconvert 7.16.6",
+  "execution": "No cells executed; original saved outputs rendered.",
+  "notebooks": [
+    {
+      "path": "notebooks/milestone-1.ipynb",
+      "sha256": "82dacd6c0606be805a85065cb1ba6f192898c6985b304b479476aaf94c2451fc",
+      "cells": 16,
+      "saved_output_cells": 8,
+      "rendered_cells": 16,
+      "rendered_images": 3
+    },
+    {
+      "path": "notebooks/milestone-2.ipynb",
+      "sha256": "165bf7bf5300b2c25a5022bb9d2881d09fa7e1a0b388993ce440e28db6a93056",
+      "cells": 8,
+      "saved_output_cells": 3,
+      "rendered_cells": 8,
+      "rendered_images": 1
+    },
+    {
+      "path": "notebooks/milestone-4.ipynb",
+      "sha256": "75e4f02604737bcaba1222deebd9e8b84aacbcf3c64785701828023da8216f45",
+      "cells": 5,
+      "saved_output_cells": 0,
+      "rendered_cells": 5,
+      "rendered_images": 0
+    },
+    {
+      "path": "notebooks/milestone-5.ipynb",
+      "sha256": "47d958664cdb2f9f34f6bd8de1e416777e749e3cdbd96580ec763ce77738ef11",
+      "cells": 4,
+      "saved_output_cells": 0,
+      "rendered_cells": 4,
+      "rendered_images": 0
+    },
+    {
+      "path": "notebooks/final-training.ipynb",
+      "sha256": "bcda743cf862fe93e008bad19a86b972922b7aedb1330392606464e46dc909c6",
+      "cells": 3,
+      "saved_output_cells": 1,
+      "rendered_cells": 3,
+      "rendered_images": 0
+    },
+    {
+      "path": "notebooks/final-validation-source.ipynb",
+      "sha256": "b386a57327ccf9e0dfa12b6be0763f9d6ad716e0060651cad673c84b682ea62b",
+      "cells": 7,
+      "saved_output_cells": 0,
+      "rendered_cells": 7,
+      "rendered_images": 0
+    },
+    {
+      "path": "notebooks/final-inference.ipynb",
+      "sha256": "401fc9eaba8b22a17f245cc3b0affa8dc5f14f86c6346a3c6ae9685b3176e222",
+      "cells": 8,
+      "saved_output_cells": 4,
+      "rendered_cells": 8,
+      "rendered_images": 0
+    },
+    {
+      "path": "notebooks/shared-inference-code.ipynb",
+      "sha256": "d0df233e69d7c1839eaf07d7f9780cc456fce08bd328d537e3b24600804349c8",
+      "cells": 7,
+      "saved_output_cells": 0,
+      "rendered_cells": 7,
+      "rendered_images": 0
+    }
+  ]
+}

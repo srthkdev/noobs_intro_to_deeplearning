@@ -1,133 +1,84 @@
 {
-  "counts": {
-    "concepts": 50,
-    "quiz": 30,
-    "notebooks": 8,
-    "chapters": 11
-  },
-  "frozen_mask_checks": [
+  "notebooks": [
     {
-      "image": "00761I10TU",
-      "class": 0,
-      "prediction_pixels": 0,
-      "target_pixels": 0,
-      "dice": 1,
-      "frozen": true,
-      "recorded_pixels": 0,
-      "raw_pixels": 0
+      "path": "notebooks/milestone-1.ipynb",
+      "cells": 16,
+      "outputs": 8,
+      "artifacts": 4,
+      "broken": []
     },
     {
-      "image": "00761I10TU",
-      "class": 1,
-      "prediction_pixels": 0,
-      "target_pixels": 0,
-      "dice": 1,
-      "frozen": true,
-      "recorded_pixels": 0,
-      "raw_pixels": 0
+      "path": "notebooks/milestone-2.ipynb",
+      "cells": 8,
+      "outputs": 3,
+      "artifacts": 2,
+      "broken": []
     },
     {
-      "image": "00761I10TU",
-      "class": 2,
-      "prediction_pixels": 3063,
-      "target_pixels": 4635,
-      "dice": 0.7856586126266563,
-      "frozen": true,
-      "recorded_pixels": 3063,
-      "raw_pixels": 3063
+      "path": "notebooks/milestone-4.ipynb",
+      "cells": 5,
+      "outputs": 0,
+      "artifacts": 6,
+      "broken": []
     },
     {
-      "image": "00761I10TU",
-      "class": 3,
-      "prediction_pixels": 563,
-      "target_pixels": 0,
-      "dice": 0,
-      "frozen": true,
-      "recorded_pixels": 563,
-      "raw_pixels": 563
+      "path": "notebooks/milestone-5.ipynb",
+      "cells": 4,
+      "outputs": 0,
+      "artifacts": 1,
+      "broken": []
     },
     {
-      "image": "70E78IONCV",
-      "class": 0,
-      "prediction_pixels": 986,
-      "target_pixels": 0,
-      "dice": 0,
-      "frozen": true,
-      "recorded_pixels": 986,
-      "raw_pixels": 986
+      "path": "notebooks/final-training.ipynb",
+      "cells": 3,
+      "outputs": 1,
+      "artifacts": 5,
+      "broken": []
     },
     {
-      "image": "70E78IONCV",
-      "class": 1,
-      "prediction_pixels": 949,
-      "target_pixels": 702,
-      "dice": 0.7595396729254997,
-      "frozen": true,
-      "recorded_pixels": 949,
-      "raw_pixels": 949
+      "path": "notebooks/final-validation-source.ipynb",
+      "cells": 7,
+      "outputs": 0,
+      "artifacts": 3,
+      "broken": []
     },
     {
-      "image": "70E78IONCV",
-      "class": 2,
-      "prediction_pixels": 875,
-      "target_pixels": 0,
-      "dice": 0,
-      "frozen": true,
-      "recorded_pixels": 875,
-      "raw_pixels": 922
+      "path": "notebooks/final-inference.ipynb",
+      "cells": 8,
+      "outputs": 4,
+      "artifacts": 1,
+      "broken": []
     },
     {
-      "image": "70E78IONCV",
-      "class": 3,
-      "prediction_pixels": 1774,
-      "target_pixels": 0,
-      "dice": 0,
-      "frozen": true,
-      "recorded_pixels": 1774,
-      "raw_pixels": 1774
-    },
-    {
-      "image": "RKRFKJ0HOQ",
-      "class": 0,
-      "prediction_pixels": 609,
-      "target_pixels": 0,
-      "dice": 0,
-      "frozen": true,
-      "recorded_pixels": 609,
-      "raw_pixels": 609
-    },
-    {
-      "image": "RKRFKJ0HOQ",
-      "class": 1,
-      "prediction_pixels": 0,
-      "target_pixels": 0,
-      "dice": 1,
-      "frozen": true,
-      "recorded_pixels": 0,
-      "raw_pixels": 19
-    },
-    {
-      "image": "RKRFKJ0HOQ",
-      "class": 2,
-      "prediction_pixels": 29278,
-      "target_pixels": 0,
-      "dice": 0,
-      "frozen": true,
-      "recorded_pixels": 29278,
-      "raw_pixels": 29283
-    },
-    {
-      "image": "RKRFKJ0HOQ",
-      "class": 3,
-      "prediction_pixels": 0,
-      "target_pixels": 0,
-      "dice": 1,
-      "frozen": true,
-      "recorded_pixels": 0,
-      "raw_pixels": 0
+      "path": "notebooks/shared-inference-code.ipynb",
+      "cells": 7,
+      "outputs": 0,
+      "artifacts": 1,
+      "broken": []
     }
   ],
-  "notebook_download_hash_match": true,
-  "source_bundle_match": true,
+  "models": [
+    "scratch_unet",
+    "resnet34_unet",
+    "efficientnet_b0_fpn"
+  ],
+  "maskChecks": 12,
+  "references": [
+    {
+      "name": "Original U-Net architecture",
+      "hasImage": true,
+      "url": "https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/"
+    },
+    {
+      "name": "Original FPN lateral building block",
+      "hasImage": true,
+      "url": "https://arxiv.org/html/1612.03144v2#S3"
+    },
+    {
+      "name": "Original ResNet residual block",
+      "hasImage": true,
+      "url": "https://arxiv.org/abs/1512.03385"
+    }
+  ],
   "errors": []
 }
