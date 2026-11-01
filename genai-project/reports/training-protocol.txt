@@ -1,0 +1,46 @@
+Surface defect segmentation experiment protocol
+Sarthak Jain 23f3000839
+29 October 2026
+
+Decision before training
+Use three distinct encoder-decoder designs, the same full-resolution input,
+and the same data split. Do not select settings by the public leaderboard.
+The older Milestone 1 checkpoint remains a separate baseline.
+
+Data
+One image ID is the split unit. The original seed-42 20% holdout is retained;
+its halves are now postprocessing tuning and audit reporting partitions.
+Because the original milestone measured the outer holdout, the audit is not
+an entirely unseen dataset relative to earlier project work. It is held out
+from the new checkpoint/postprocessing decisions, not claimed as a new test set.
+All data comes from the competition. ImageNet weights initialize the two
+pretrained encoders; the scratch U-Net has no pretrained weights.
+
+Processing
+Keep the original 128x800 strip geometry and grayscale input. Use a fixed
+(x-0.5)/0.25 normalization at training and inference. Apply flips jointly to
+images and masks, brightness/contrast only to images. No geometric resizing
+or square distortion. A tempered sampler increases rare-positive exposure
+without forcing a completely uniform class distribution.
+
+Training
+AdamW with weight decay 0.0001. Initial learning rate 0.001 for scratch and
+0.0003 for pretrained models. Maximum 25 epochs, cosine schedule, tune-loss
+early stopping with patience 7, gradient norm clipping at 1. CUDA AMP is used
+only where supported. Batch size 16. Save the best tune-loss checkpoint.
+The loss combines 0.5 BCE with 0.5 positive-image/class-pair Dice loss.
+
+Assessment
+Per-class probability thresholds 0.35, 0.5, 0.65 and minimum connected-component
+areas 0, 32, 128 form a limited nine-setting ablation per class. Tune only on
+tuning images, then freeze settings for audit and test inference. The local
+assessment formula follows the supplied milestone exercise; the actual Kaggle
+leaderboard score is recorded separately, not inferred from local validation.
+Report per-class Dice, foreground Dice, false positives, pixel F1 and accuracy.
+Choose the final architecture by tuning score, not the audit ranking.
+
+Tracking and reproducibility
+Write actual W&B offline runs on Kaggle, then sync them with account credentials
+from the local environment. Credentials never appear in the notebook or repo.
+Store split CSV, histories, checkpoint config, postprocessing trials and metrics.
+Keep only meaningful current timestamps; do not alter historical commit dates.

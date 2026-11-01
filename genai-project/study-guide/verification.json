@@ -1,0 +1,133 @@
+{
+  "counts": {
+    "concepts": 50,
+    "quiz": 30,
+    "notebooks": 8,
+    "chapters": 11
+  },
+  "frozen_mask_checks": [
+    {
+      "image": "00761I10TU",
+      "class": 0,
+      "prediction_pixels": 0,
+      "target_pixels": 0,
+      "dice": 1,
+      "frozen": true,
+      "recorded_pixels": 0,
+      "raw_pixels": 0
+    },
+    {
+      "image": "00761I10TU",
+      "class": 1,
+      "prediction_pixels": 0,
+      "target_pixels": 0,
+      "dice": 1,
+      "frozen": true,
+      "recorded_pixels": 0,
+      "raw_pixels": 0
+    },
+    {
+      "image": "00761I10TU",
+      "class": 2,
+      "prediction_pixels": 3063,
+      "target_pixels": 4635,
+      "dice": 0.7856586126266563,
+      "frozen": true,
+      "recorded_pixels": 3063,
+      "raw_pixels": 3063
+    },
+    {
+      "image": "00761I10TU",
+      "class": 3,
+      "prediction_pixels": 563,
+      "target_pixels": 0,
+      "dice": 0,
+      "frozen": true,
+      "recorded_pixels": 563,
+      "raw_pixels": 563
+    },
+    {
+      "image": "70E78IONCV",
+      "class": 0,
+      "prediction_pixels": 986,
+      "target_pixels": 0,
+      "dice": 0,
+      "frozen": true,
+      "recorded_pixels": 986,
+      "raw_pixels": 986
+    },
+    {
+      "image": "70E78IONCV",
+      "class": 1,
+      "prediction_pixels": 949,
+      "target_pixels": 702,
+      "dice": 0.7595396729254997,
+      "frozen": true,
+      "recorded_pixels": 949,
+      "raw_pixels": 949
+    },
+    {
+      "image": "70E78IONCV",
+      "class": 2,
+      "prediction_pixels": 875,
+      "target_pixels": 0,
+      "dice": 0,
+      "frozen": true,
+      "recorded_pixels": 875,
+      "raw_pixels": 922
+    },
+    {
+      "image": "70E78IONCV",
+      "class": 3,
+      "prediction_pixels": 1774,
+      "target_pixels": 0,
+      "dice": 0,
+      "frozen": true,
+      "recorded_pixels": 1774,
+      "raw_pixels": 1774
+    },
+    {
+      "image": "RKRFKJ0HOQ",
+      "class": 0,
+      "prediction_pixels": 609,
+      "target_pixels": 0,
+      "dice": 0,
+      "frozen": true,
+      "recorded_pixels": 609,
+      "raw_pixels": 609
+    },
+    {
+      "image": "RKRFKJ0HOQ",
+      "class": 1,
+      "prediction_pixels": 0,
+      "target_pixels": 0,
+      "dice": 1,
+      "frozen": true,
+      "recorded_pixels": 0,
+      "raw_pixels": 19
+    },
+    {
+      "image": "RKRFKJ0HOQ",
+      "class": 2,
+      "prediction_pixels": 29278,
+      "target_pixels": 0,
+      "dice": 0,
+      "frozen": true,
+      "recorded_pixels": 29278,
+      "raw_pixels": 29283
+    },
+    {
+      "image": "RKRFKJ0HOQ",
+      "class": 3,
+      "prediction_pixels": 0,
+      "target_pixels": 0,
+      "dice": 1,
+      "frozen": true,
+      "recorded_pixels": 0,
+      "raw_pixels": 0
+    }
+  ],
+  "notebook_download_hash_match": true,
+  "source_bundle_match": true,
+  "errors": []
+}

@@ -1,0 +1,28 @@
+{
+  "variant": "equal_mean_ensemble",
+  "model_names": [
+    "scratch_unet",
+    "resnet34_unet",
+    "efficientnet_b0_fpn"
+  ],
+  "tta": false,
+  "forward_passes": 3,
+  "tune_assessment_score": 0.7076337834583714,
+  "audit_assessment_score": 0.683852163532016,
+  "audit_macro_pixel_f1": 0.5183344032313825,
+  "audit_pixel_accuracy": 0.9951685940926535,
+  "thresholds": [
+    0.35,
+    0.35,
+    0.35,
+    0.35
+  ],
+  "min_areas": [
+    32,
+    128,
+    128,
+    128
+  ],
+  "model": "ensemble",
+  "selection_rule": "highest tune score; prefer fewer forward passes within 0.002 of best"
+}

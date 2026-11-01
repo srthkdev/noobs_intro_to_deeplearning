@@ -1,0 +1,4 @@
+variant,model_names,tta,forward_passes,tune_assessment_score,audit_assessment_score,audit_macro_pixel_f1,audit_pixel_accuracy
+single,['efficientnet_b0_fpn'],False,1,0.6872019988688044,0.6875954333166887,0.49790070985030477,0.9950779536732455
+horizontal_tta,['efficientnet_b0_fpn'],True,2,0.6966033111989202,0.6950947280185318,0.5265531487296089,0.9951966124417488
+equal_mean_ensemble,"['scratch_unet', 'resnet34_unet', 'efficientnet_b0_fpn']",False,3,0.7076337834583714,0.683852163532016,0.5183344032313825,0.9951685940926535

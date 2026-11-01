@@ -1,0 +1,12 @@
+{
+  "Q1": "578; 107, 35, 438, 181; 15; 578, 1",
+  "Q2": "0.0160%, 561.5, 6251",
+  "Q3": "28.81%, 48.17%; 104.69, 35.00; 2.99x; 10",
+  "Q4": "7.50e-05, 1.50e-04, 2.61e-05; 4.00e-05; The learning rate stays in the early warmup range, so learning is slow and the loss curves may look flat or underfit.",
+  "Q5": "10, 7, 0.671; No, 11",
+  "Q6": "400; 2800, 1600; 20, 40; 32; 120, 30; 4; 60",
+  "Q7": "4039; 0.8415; 0.3000; 0.6398, 0.8400; naive Dice, 0.8500",
+  "Q9": "5, 99, 657; 99.24%; 66.05, 501+ px; Missing a few large defects can lose more pixels, while missing many tiny defects can dominate the number of missed pairs.",
+  "Q8": "6; 4, 0.300; -0.002; I would monitor the official validation score and keep epoch 4, the earliest tied best. Both losses fall, but foreground Dice stays zero. The run is underfitting the defects and mostly learning background, rather than showing evidence of overfitting. Split note: rare_other has one image, so I kept it in training and stratified the remainder to obtain 960/240.",
+  "Q10": "0.300, 0.300, 0.300, 0.300; 0.000, 0.000, 0.000; no, no; 0.0%, 0.0%; Changing several settings together would leave me unable to tell which one caused the result. The unchanged false-alarm rate, together with zero foreground Dice, shows no evidence that this sampler overcame the model's background bias in six epochs."
+}

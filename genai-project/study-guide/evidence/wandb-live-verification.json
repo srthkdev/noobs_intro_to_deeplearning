@@ -1,0 +1,740 @@
+{
+  "verified_at_utc": "2026-11-01T13:08:37.454585+00:00",
+  "runs": [
+    {
+      "label": "M1 baseline",
+      "run_id": "899fn5ea",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/899fn5ea",
+      "state": "live verification unavailable",
+      "history_matches_saved_csv": false,
+      "source": "reports/milestone-1-training_history.csv",
+      "validation_key": "val_loss",
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.4278523693593259,
+          "val_loss": 0.4098221574398759
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.3623023717117487,
+          "val_loss": 0.3552267537168266
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.3437746959140237,
+          "val_loss": 0.3447370423774752
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.3302037975218884,
+          "val_loss": 0.3299296274029303
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.3192319012998501,
+          "val_loss": 0.313862808104302
+        }
+      ],
+      "verification_error": "WandbApiFailedError"
+    },
+    {
+      "label": "M2 RGB baseline",
+      "run_id": "fw7y5ems",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/fw7y5ems",
+      "state": "finished",
+      "epochs": 5,
+      "history_matches_saved_csv": true,
+      "source": "reports/milestone2-results/history.csv",
+      "validation_key": "val_loss",
+      "config": {
+        "lr": 0.0003,
+        "seed": 42,
+        "epochs": 5,
+        "architecture": "small_unet_rgb",
+        "train_images": 9114,
+        "validation_images": 2279
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.48438680770367365,
+          "val_loss": 0.40643141548483974
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.40465682487961807,
+          "val_loss": 0.3905096479469666
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.3855505725362726,
+          "val_loss": 0.3752138135908151
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.36959785199463563,
+          "val_loss": 0.35374402453262277
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.3572591178009639,
+          "val_loss": 0.35808526902096266
+        }
+      ]
+    },
+    {
+      "label": "scratch_unet",
+      "run_id": "o05sqe83",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/o05sqe83",
+      "state": "finished",
+      "epochs": 25,
+      "history_matches_saved_csv": true,
+      "source": "reports/final-results/scratch_unet/history.csv",
+      "validation_key": "tune_loss",
+      "config": {
+        "lr": 0.001,
+        "seed": 42,
+        "batch_size": 16,
+        "epochs_max": 25,
+        "tune_images": 1139,
+        "architecture": "scratch_unet",
+        "audit_images": 1140,
+        "train_images": 9114
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5039362748882502,
+          "tune_loss": 0.37035567358567906
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.3579566760075728,
+          "tune_loss": 0.34149413514650107
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.3279244462884464,
+          "tune_loss": 0.3132194421655573
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.31128896028947906,
+          "tune_loss": 0.3051301887008681
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.29735615258942,
+          "tune_loss": 0.28047801666713995
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.2856768751343222,
+          "tune_loss": 0.2857374119669644
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.27587296651373416,
+          "tune_loss": 0.2832497867630489
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.2675009787749742,
+          "tune_loss": 0.2594500074949675
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.26199703725226126,
+          "tune_loss": 0.2655285763782404
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.2524259441616191,
+          "tune_loss": 0.24781578077989466
+        },
+        {
+          "epoch": 11,
+          "train_loss": 0.24803688648057293,
+          "tune_loss": 0.2516270520867121
+        },
+        {
+          "epoch": 12,
+          "train_loss": 0.24370355031679722,
+          "tune_loss": 0.24378020996661223
+        },
+        {
+          "epoch": 13,
+          "train_loss": 0.23769374917362876,
+          "tune_loss": 0.23855212491735017
+        },
+        {
+          "epoch": 14,
+          "train_loss": 0.23312002640820031,
+          "tune_loss": 0.24081126965510416
+        },
+        {
+          "epoch": 15,
+          "train_loss": 0.22890423309235347,
+          "tune_loss": 0.24278982287179596
+        },
+        {
+          "epoch": 16,
+          "train_loss": 0.22215350667766398,
+          "tune_loss": 0.23087554047566114
+        },
+        {
+          "epoch": 17,
+          "train_loss": 0.21719720455437133,
+          "tune_loss": 0.23442860515469308
+        },
+        {
+          "epoch": 18,
+          "train_loss": 0.21424972598676179,
+          "tune_loss": 0.2338944720766647
+        },
+        {
+          "epoch": 19,
+          "train_loss": 0.21081820937044818,
+          "tune_loss": 0.22796949672269862
+        },
+        {
+          "epoch": 20,
+          "train_loss": 0.2066351767267238,
+          "tune_loss": 0.22562126494139512
+        },
+        {
+          "epoch": 21,
+          "train_loss": 0.20635538558531466,
+          "tune_loss": 0.22589847703216576
+        },
+        {
+          "epoch": 22,
+          "train_loss": 0.20022155335003383,
+          "tune_loss": 0.22579940821226488
+        },
+        {
+          "epoch": 23,
+          "train_loss": 0.2016078403625463,
+          "tune_loss": 0.2246879861216675
+        },
+        {
+          "epoch": 24,
+          "train_loss": 0.19727763542748084,
+          "tune_loss": 0.22370112032561684
+        },
+        {
+          "epoch": 25,
+          "train_loss": 0.19682405806304543,
+          "tune_loss": 0.22210002315735167
+        }
+      ]
+    },
+    {
+      "label": "resnet34_unet",
+      "run_id": "97leguav",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/97leguav",
+      "state": "finished",
+      "epochs": 25,
+      "history_matches_saved_csv": true,
+      "source": "reports/final-results/resnet34_unet/history.csv",
+      "validation_key": "tune_loss",
+      "config": {
+        "lr": 0.0003,
+        "seed": 42,
+        "batch_size": 16,
+        "epochs_max": 25,
+        "tune_images": 1139,
+        "architecture": "resnet34_unet",
+        "audit_images": 1140,
+        "train_images": 9114
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.43538122199228885,
+          "tune_loss": 0.3087222182876296
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.29367493936987804,
+          "tune_loss": 0.27256953165497666
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.2666278035920101,
+          "tune_loss": 0.2834837314614714
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.2543967472622733,
+          "tune_loss": 0.2506192825257098
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.2443290382316297,
+          "tune_loss": 0.24098998712436268
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.2306469812260036,
+          "tune_loss": 0.23065705465265698
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.22579777258083908,
+          "tune_loss": 0.22978948702981747
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.21895713627743882,
+          "tune_loss": 0.22845898860373762
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.21065983775940175,
+          "tune_loss": 0.22474276360134163
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.20588898662022392,
+          "tune_loss": 0.2232815049739131
+        },
+        {
+          "epoch": 11,
+          "train_loss": 0.1989677982363545,
+          "tune_loss": 0.21730129725583505
+        },
+        {
+          "epoch": 12,
+          "train_loss": 0.193248463194962,
+          "tune_loss": 0.21876982570060835
+        },
+        {
+          "epoch": 13,
+          "train_loss": 0.18284522089514524,
+          "tune_loss": 0.21449742680112974
+        },
+        {
+          "epoch": 14,
+          "train_loss": 0.18008232293930498,
+          "tune_loss": 0.21064262245180734
+        },
+        {
+          "epoch": 15,
+          "train_loss": 0.1711993642790631,
+          "tune_loss": 0.2095864935728204
+        },
+        {
+          "epoch": 16,
+          "train_loss": 0.17024652228259662,
+          "tune_loss": 0.21287724192567412
+        },
+        {
+          "epoch": 17,
+          "train_loss": 0.165179225578757,
+          "tune_loss": 0.20390038087610826
+        },
+        {
+          "epoch": 18,
+          "train_loss": 0.16032505941666975,
+          "tune_loss": 0.20529158584793164
+        },
+        {
+          "epoch": 19,
+          "train_loss": 0.15371981583615785,
+          "tune_loss": 0.20560258186051886
+        },
+        {
+          "epoch": 20,
+          "train_loss": 0.1522928681490268,
+          "tune_loss": 0.2055804441512102
+        },
+        {
+          "epoch": 21,
+          "train_loss": 0.14888395952575428,
+          "tune_loss": 0.20611275207902174
+        },
+        {
+          "epoch": 22,
+          "train_loss": 0.14758561199724296,
+          "tune_loss": 0.20424328809824818
+        },
+        {
+          "epoch": 23,
+          "train_loss": 0.14454545641131167,
+          "tune_loss": 0.20579278516183305
+        },
+        {
+          "epoch": 24,
+          "train_loss": 0.14262275478054826,
+          "tune_loss": 0.20313623097510167
+        },
+        {
+          "epoch": 25,
+          "train_loss": 0.14202095206196644,
+          "tune_loss": 0.20240343294717222
+        }
+      ]
+    },
+    {
+      "label": "efficientnet_b0_fpn",
+      "run_id": "ar8qn7m6",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/ar8qn7m6",
+      "state": "finished",
+      "epochs": 25,
+      "history_matches_saved_csv": true,
+      "source": "reports/final-results/efficientnet_b0_fpn/history.csv",
+      "validation_key": "tune_loss",
+      "config": {
+        "lr": 0.0003,
+        "seed": 42,
+        "batch_size": 16,
+        "epochs_max": 25,
+        "tune_images": 1139,
+        "architecture": "efficientnet_b0_fpn",
+        "audit_images": 1140,
+        "train_images": 9114
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.3233643105240906,
+          "tune_loss": 0.25138841306462006
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.24595436114398486,
+          "tune_loss": 0.22712210392460058
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.22696833258557272,
+          "tune_loss": 0.21883881314476925
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.21250299850733415,
+          "tune_loss": 0.215237246507401
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.20289668008531425,
+          "tune_loss": 0.20779099429878256
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.19299655346355601,
+          "tune_loss": 0.2081261445180275
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.18608058019180895,
+          "tune_loss": 0.20892165398472123
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.17613886635842907,
+          "tune_loss": 0.2114464335398678
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.1713904637842553,
+          "tune_loss": 0.2008053719003123
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.166819017086998,
+          "tune_loss": 0.19911008460988489
+        },
+        {
+          "epoch": 11,
+          "train_loss": 0.16140228834281972,
+          "tune_loss": 0.20133557456485843
+        },
+        {
+          "epoch": 12,
+          "train_loss": 0.15736256475403615,
+          "tune_loss": 0.1996705435785523
+        },
+        {
+          "epoch": 13,
+          "train_loss": 0.15518076958194857,
+          "tune_loss": 0.19789686690463215
+        },
+        {
+          "epoch": 14,
+          "train_loss": 0.15031368448424554,
+          "tune_loss": 0.1985935154219695
+        },
+        {
+          "epoch": 15,
+          "train_loss": 0.14447678580131346,
+          "tune_loss": 0.1962887435183387
+        },
+        {
+          "epoch": 16,
+          "train_loss": 0.14178256584555793,
+          "tune_loss": 0.1966519824002687
+        },
+        {
+          "epoch": 17,
+          "train_loss": 0.1390038431818898,
+          "tune_loss": 0.19943656268038176
+        },
+        {
+          "epoch": 18,
+          "train_loss": 0.13595121331465515,
+          "tune_loss": 0.1968828851554978
+        },
+        {
+          "epoch": 19,
+          "train_loss": 0.13324942473311527,
+          "tune_loss": 0.19437281461636993
+        },
+        {
+          "epoch": 20,
+          "train_loss": 0.13163376510444116,
+          "tune_loss": 0.19501657807533945
+        },
+        {
+          "epoch": 21,
+          "train_loss": 0.1310576007361995,
+          "tune_loss": 0.1947810618865898
+        },
+        {
+          "epoch": 22,
+          "train_loss": 0.1280735529565173,
+          "tune_loss": 0.19491018511884772
+        },
+        {
+          "epoch": 23,
+          "train_loss": 0.12839584017247255,
+          "tune_loss": 0.19596668249740215
+        },
+        {
+          "epoch": 24,
+          "train_loss": 0.12710519024964512,
+          "tune_loss": 0.19560666677981117
+        },
+        {
+          "epoch": 25,
+          "train_loss": 0.1255643903875602,
+          "tune_loss": 0.19652597386393242
+        }
+      ]
+    },
+    {
+      "label": "M4 R0",
+      "run_id": "fpzlkrgn",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/fpzlkrgn",
+      "state": "finished",
+      "epochs": 6,
+      "history_matches_saved_csv": true,
+      "source": "reports/milestone4-results/R0/history.csv",
+      "validation_key": "val_loss",
+      "config": {
+        "lr": 0.0003,
+        "AMP": true,
+        "seed": 42,
+        "epochs": 6,
+        "sampling": "natural uniform shuffled",
+        "schedule": "constant",
+        "batch_size": 16,
+        "val_images": 240,
+        "train_images": 960
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6388267387946447,
+          "val_loss": 0.5164997259775798
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5146179104844729,
+          "val_loss": 0.5100083072980245
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5109973634282748,
+          "val_loss": 0.5068114399909973
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5058505550026894,
+          "val_loss": 0.5049013276894887
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.49890096485614777,
+          "val_loss": 0.49414778749148053
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.4936259220043818,
+          "val_loss": 0.47655728459358215
+        }
+      ]
+    },
+    {
+      "label": "M4 R0b",
+      "run_id": "ktv7tpff",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/ktv7tpff",
+      "state": "finished",
+      "epochs": 6,
+      "history_matches_saved_csv": true,
+      "source": "reports/milestone4-results/R0b/history.csv",
+      "validation_key": "val_loss",
+      "config": {
+        "lr": 0.0003,
+        "AMP": true,
+        "seed": 7,
+        "epochs": 6,
+        "sampling": "natural uniform shuffled",
+        "schedule": "constant",
+        "batch_size": 16,
+        "val_images": 240,
+        "train_images": 960
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6255543291568756,
+          "val_loss": 0.5156892379124959
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5157435218493144,
+          "val_loss": 0.5132044970989227
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5110726445913315,
+          "val_loss": 0.512635225057602
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5069530710577965,
+          "val_loss": 0.5049792647361755
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5051039864619573,
+          "val_loss": 0.5020028630892436
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5025093858440717,
+          "val_loss": 0.49066492120424904
+        }
+      ]
+    },
+    {
+      "label": "M4 R1",
+      "run_id": "ovzjjli7",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/ovzjjli7",
+      "state": "finished",
+      "epochs": 6,
+      "history_matches_saved_csv": true,
+      "source": "reports/milestone4-results/R1/history.csv",
+      "validation_key": "val_loss",
+      "config": {
+        "lr": 0.0003,
+        "AMP": true,
+        "seed": 42,
+        "epochs": 6,
+        "sampling": "natural uniform shuffled",
+        "schedule": "60-step warmup + cosine denominator420",
+        "batch_size": 16,
+        "val_images": 240,
+        "train_images": 960
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.7596741984287898,
+          "val_loss": 0.5589441458384196
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5211837137738864,
+          "val_loss": 0.5128514031569164
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5125526686509451,
+          "val_loss": 0.5090104877948761
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.505367498099804,
+          "val_loss": 0.5021150290966034
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.4985600153605143,
+          "val_loss": 0.501329920689265
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.4945768589774768,
+          "val_loss": 0.49220487078030906
+        }
+      ]
+    },
+    {
+      "label": "M4 R2",
+      "run_id": "uzx8azgc",
+      "url": "https://wandb.ai/23f3000839-iit-madras-foundation/23f3000839-t32026/runs/uzx8azgc",
+      "state": "finished",
+      "epochs": 6,
+      "history_matches_saved_csv": true,
+      "source": "reports/milestone4-results/R2/history.csv",
+      "validation_key": "val_loss",
+      "config": {
+        "lr": 0.0003,
+        "AMP": true,
+        "seed": 42,
+        "epochs": 6,
+        "sampling": "bounded square-root on training combinations, cap5",
+        "schedule": "constant",
+        "batch_size": 16,
+        "val_images": 240,
+        "train_images": 960
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6452509144941966,
+          "val_loss": 0.5168235699335734
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5226622740427653,
+          "val_loss": 0.5092570304870605
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5171146313349406,
+          "val_loss": 0.503499428431193
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5109532684087753,
+          "val_loss": 0.4951497972011566
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5043468137582143,
+          "val_loss": 0.4885209321975708
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.49471853822469714,
+          "val_loss": 0.46609503825505577
+        }
+      ]
+    }
+  ]
+}

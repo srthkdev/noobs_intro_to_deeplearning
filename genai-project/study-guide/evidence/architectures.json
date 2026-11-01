@@ -1,0 +1,731 @@
+[
+  {
+    "name": "scratch_unet",
+    "parameters": 1096252,
+    "checkpoint_epoch": 25,
+    "checkpoint_sha256": "c0860c4c6a19b4d24010e0454ca193a53b3b183879f8722fbf56eb06a217ee76",
+    "checkpoint_config": {
+      "architecture": "scratch_unet",
+      "pretrained": false,
+      "seed": 42,
+      "epochs_max": 25,
+      "batch_size": 16,
+      "height": 128,
+      "width": 800,
+      "loss": "0.5 BCE + 0.5 positive pair Dice",
+      "augmentation": "horizontal/vertical flips; brightness/contrast",
+      "sampler": "tempered inverse prevalence",
+      "train_images": 9114,
+      "tune_images": 1139,
+      "audit_images": 1140,
+      "lr": 0.001,
+      "device": "cuda"
+    },
+    "stages": {
+      "enc.0": {
+        "module": "Block",
+        "input": [
+          [
+            1,
+            1,
+            128,
+            800
+          ]
+        ],
+        "output": [
+          1,
+          24,
+          128,
+          800
+        ]
+      },
+      "enc.1": {
+        "module": "Block",
+        "input": [
+          [
+            1,
+            24,
+            64,
+            400
+          ]
+        ],
+        "output": [
+          1,
+          48,
+          64,
+          400
+        ]
+      },
+      "enc.2": {
+        "module": "Block",
+        "input": [
+          [
+            1,
+            48,
+            32,
+            200
+          ]
+        ],
+        "output": [
+          1,
+          96,
+          32,
+          200
+        ]
+      },
+      "enc.3": {
+        "module": "Block",
+        "input": [
+          [
+            1,
+            96,
+            16,
+            100
+          ]
+        ],
+        "output": [
+          1,
+          192,
+          16,
+          100
+        ]
+      },
+      "dec.0": {
+        "module": "Block",
+        "input": [
+          [
+            1,
+            288,
+            32,
+            200
+          ]
+        ],
+        "output": [
+          1,
+          96,
+          32,
+          200
+        ]
+      },
+      "dec.1": {
+        "module": "Block",
+        "input": [
+          [
+            1,
+            144,
+            64,
+            400
+          ]
+        ],
+        "output": [
+          1,
+          48,
+          64,
+          400
+        ]
+      },
+      "dec.2": {
+        "module": "Block",
+        "input": [
+          [
+            1,
+            72,
+            128,
+            800
+          ]
+        ],
+        "output": [
+          1,
+          24,
+          128,
+          800
+        ]
+      },
+      "head": {
+        "module": "Conv2d",
+        "input": [
+          [
+            1,
+            24,
+            128,
+            800
+          ]
+        ],
+        "output": [
+          1,
+          4,
+          128,
+          800
+        ]
+      }
+    },
+    "output_shape": [
+      1,
+      4,
+      128,
+      800
+    ],
+    "inspection": "Loaded actual saved weights; CPU forward pass verifies stage tensor shapes. No training or new selection.",
+    "inspection_runtime": {
+      "torch": "2.15.0",
+      "smp": "0.5.0"
+    },
+    "architecture_text": "scratch_unet-architecture.txt"
+  },
+  {
+    "name": "resnet34_unet",
+    "parameters": 24430532,
+    "checkpoint_epoch": 25,
+    "checkpoint_sha256": "2d5271b12a86c0611380dc9a7128813d155f03f6bba98972f4e675c43bb58c21",
+    "checkpoint_config": {
+      "architecture": "resnet34_unet",
+      "pretrained": true,
+      "seed": 42,
+      "epochs_max": 25,
+      "batch_size": 16,
+      "height": 128,
+      "width": 800,
+      "loss": "0.5 BCE + 0.5 positive pair Dice",
+      "augmentation": "horizontal/vertical flips; brightness/contrast",
+      "sampler": "tempered inverse prevalence",
+      "train_images": 9114,
+      "tune_images": 1139,
+      "audit_images": 1140,
+      "lr": 0.0003,
+      "device": "cuda"
+    },
+    "stages": {
+      "encoder": {
+        "module": "ResNetEncoder",
+        "input": [
+          [
+            1,
+            1,
+            128,
+            800
+          ]
+        ],
+        "output": [
+          [
+            1,
+            1,
+            128,
+            800
+          ],
+          [
+            1,
+            64,
+            64,
+            400
+          ],
+          [
+            1,
+            64,
+            32,
+            200
+          ],
+          [
+            1,
+            128,
+            16,
+            100
+          ],
+          [
+            1,
+            256,
+            8,
+            50
+          ],
+          [
+            1,
+            512,
+            4,
+            25
+          ]
+        ]
+      },
+      "decoder.center": {
+        "module": "Identity",
+        "input": [
+          [
+            1,
+            512,
+            4,
+            25
+          ]
+        ],
+        "output": [
+          1,
+          512,
+          4,
+          25
+        ]
+      },
+      "decoder.blocks.0": {
+        "module": "UnetDecoderBlock",
+        "input": [
+          [
+            1,
+            512,
+            4,
+            25
+          ],
+          "<class 'int'>",
+          "<class 'int'>"
+        ],
+        "output": [
+          1,
+          256,
+          8,
+          50
+        ]
+      },
+      "decoder.blocks.1": {
+        "module": "UnetDecoderBlock",
+        "input": [
+          [
+            1,
+            256,
+            8,
+            50
+          ],
+          "<class 'int'>",
+          "<class 'int'>"
+        ],
+        "output": [
+          1,
+          128,
+          16,
+          100
+        ]
+      },
+      "decoder.blocks.2": {
+        "module": "UnetDecoderBlock",
+        "input": [
+          [
+            1,
+            128,
+            16,
+            100
+          ],
+          "<class 'int'>",
+          "<class 'int'>"
+        ],
+        "output": [
+          1,
+          64,
+          32,
+          200
+        ]
+      },
+      "decoder.blocks.3": {
+        "module": "UnetDecoderBlock",
+        "input": [
+          [
+            1,
+            64,
+            32,
+            200
+          ],
+          "<class 'int'>",
+          "<class 'int'>"
+        ],
+        "output": [
+          1,
+          32,
+          64,
+          400
+        ]
+      },
+      "decoder.blocks.4": {
+        "module": "UnetDecoderBlock",
+        "input": [
+          [
+            1,
+            32,
+            64,
+            400
+          ],
+          "<class 'int'>",
+          "<class 'int'>"
+        ],
+        "output": [
+          1,
+          16,
+          128,
+          800
+        ]
+      },
+      "decoder": {
+        "module": "UnetDecoder",
+        "input": [
+          [
+            [
+              1,
+              1,
+              128,
+              800
+            ],
+            [
+              1,
+              64,
+              64,
+              400
+            ],
+            [
+              1,
+              64,
+              32,
+              200
+            ],
+            [
+              1,
+              128,
+              16,
+              100
+            ],
+            [
+              1,
+              256,
+              8,
+              50
+            ],
+            [
+              1,
+              512,
+              4,
+              25
+            ]
+          ]
+        ],
+        "output": [
+          1,
+          16,
+          128,
+          800
+        ]
+      },
+      "segmentation_head": {
+        "module": "SegmentationHead",
+        "input": [
+          [
+            1,
+            16,
+            128,
+            800
+          ]
+        ],
+        "output": [
+          1,
+          4,
+          128,
+          800
+        ]
+      }
+    },
+    "output_shape": [
+      1,
+      4,
+      128,
+      800
+    ],
+    "inspection": "Loaded actual saved weights; CPU forward pass verifies stage tensor shapes. No training or new selection.",
+    "inspection_runtime": {
+      "torch": "2.15.0",
+      "smp": "0.5.0"
+    },
+    "architecture_text": "resnet34_unet-architecture.txt"
+  },
+  {
+    "name": "efficientnet_b0_fpn",
+    "parameters": 4477632,
+    "checkpoint_epoch": 19,
+    "checkpoint_sha256": "fdf1830d33c9efa284586f75163f1e91b16c7aa7d556e819e391b60dfae4aa27",
+    "checkpoint_config": {
+      "architecture": "efficientnet_b0_fpn",
+      "pretrained": true,
+      "seed": 42,
+      "epochs_max": 25,
+      "batch_size": 16,
+      "height": 128,
+      "width": 800,
+      "loss": "0.5 BCE + 0.5 positive pair Dice",
+      "augmentation": "horizontal/vertical flips; brightness/contrast",
+      "sampler": "tempered inverse prevalence",
+      "train_images": 9114,
+      "tune_images": 1139,
+      "audit_images": 1140,
+      "lr": 0.0003,
+      "device": "cuda"
+    },
+    "stages": {
+      "encoder": {
+        "module": "EfficientNetEncoder",
+        "input": [
+          [
+            1,
+            1,
+            128,
+            800
+          ]
+        ],
+        "output": [
+          [
+            1,
+            1,
+            128,
+            800
+          ],
+          [
+            1,
+            32,
+            64,
+            400
+          ],
+          [
+            1,
+            24,
+            32,
+            200
+          ],
+          [
+            1,
+            40,
+            16,
+            100
+          ],
+          [
+            1,
+            112,
+            8,
+            50
+          ],
+          [
+            1,
+            320,
+            4,
+            25
+          ]
+        ]
+      },
+      "decoder.p5": {
+        "module": "Conv2d",
+        "input": [
+          [
+            1,
+            320,
+            4,
+            25
+          ]
+        ],
+        "output": [
+          1,
+          128,
+          4,
+          25
+        ]
+      },
+      "decoder.p4": {
+        "module": "FPNBlock",
+        "input": [
+          [
+            1,
+            128,
+            4,
+            25
+          ],
+          [
+            1,
+            112,
+            8,
+            50
+          ]
+        ],
+        "output": [
+          1,
+          128,
+          8,
+          50
+        ]
+      },
+      "decoder.p3": {
+        "module": "FPNBlock",
+        "input": [
+          [
+            1,
+            128,
+            8,
+            50
+          ],
+          [
+            1,
+            40,
+            16,
+            100
+          ]
+        ],
+        "output": [
+          1,
+          128,
+          16,
+          100
+        ]
+      },
+      "decoder.p2": {
+        "module": "FPNBlock",
+        "input": [
+          [
+            1,
+            128,
+            16,
+            100
+          ],
+          [
+            1,
+            24,
+            32,
+            200
+          ]
+        ],
+        "output": [
+          1,
+          128,
+          32,
+          200
+        ]
+      },
+      "decoder.merge": {
+        "module": "MergeBlock",
+        "input": [
+          [
+            [
+              1,
+              64,
+              32,
+              200
+            ],
+            [
+              1,
+              64,
+              32,
+              200
+            ],
+            [
+              1,
+              64,
+              32,
+              200
+            ],
+            [
+              1,
+              64,
+              32,
+              200
+            ]
+          ]
+        ],
+        "output": [
+          1,
+          64,
+          32,
+          200
+        ]
+      },
+      "decoder.dropout": {
+        "module": "Dropout2d",
+        "input": [
+          [
+            1,
+            64,
+            32,
+            200
+          ]
+        ],
+        "output": [
+          1,
+          64,
+          32,
+          200
+        ]
+      },
+      "decoder": {
+        "module": "FPNDecoder",
+        "input": [
+          [
+            [
+              1,
+              1,
+              128,
+              800
+            ],
+            [
+              1,
+              32,
+              64,
+              400
+            ],
+            [
+              1,
+              24,
+              32,
+              200
+            ],
+            [
+              1,
+              40,
+              16,
+              100
+            ],
+            [
+              1,
+              112,
+              8,
+              50
+            ],
+            [
+              1,
+              320,
+              4,
+              25
+            ]
+          ]
+        ],
+        "output": [
+          1,
+          64,
+          32,
+          200
+        ]
+      },
+      "segmentation_head": {
+        "module": "SegmentationHead",
+        "input": [
+          [
+            1,
+            64,
+            32,
+            200
+          ]
+        ],
+        "output": [
+          1,
+          4,
+          128,
+          800
+        ]
+      }
+    },
+    "output_shape": [
+      1,
+      4,
+      128,
+      800
+    ],
+    "inspection": "Loaded actual saved weights; CPU forward pass verifies stage tensor shapes. No training or new selection.",
+    "inspection_runtime": {
+      "torch": "2.15.0",
+      "smp": "0.5.0"
+    },
+    "architecture_text": "efficientnet_b0_fpn-architecture.txt"
+  }
+]

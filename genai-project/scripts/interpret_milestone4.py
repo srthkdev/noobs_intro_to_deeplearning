@@ -1,0 +1,11 @@
+"""Write descriptive M4 entries from the saved run histories without retraining."""
+from pathlib import Path
+import json
+import pandas as pd
+R=Path(__file__).resolve().parents[1]/'reports/milestone4-results'
+a=json.loads((R/'answers.json').read_text());runs={x['name']:x for x in json.loads((R/'training-summary.json').read_text())};h=pd.read_csv(R/'R1/history.csv');last=h.iloc[-1];r=runs['R1']
+a['Q8']=f"{r['best_val_loss_epoch']}; {r['best_epoch']}, {r['best_official_score']:.3f}; {last.val_loss-last.train_loss:.3f}; I would monitor the official validation score and keep epoch {r['best_epoch']}, the earliest tied best. Both losses fall, but foreground Dice stays zero. The run is underfitting the defects and mostly learning background, rather than showing evidence of overfitting. Split note: rare_other has one image, so I kept it in training and stratified the remainder to obtain 960/240."
+noise=abs(runs['R0']['best_official_score']-runs['R0b']['best_official_score']);gains={n:runs[n]['best_official_score']-runs['R0']['best_official_score'] for n in ['R1','R2']}
+def rounded(v):return f'{0.0 if abs(v)<.0005 else v:.3f}'
+a['Q10']=', '.join(f"{runs[n]['best_official_score']:.3f}" for n in ['R0','R0b','R1','R2'])+f"; {rounded(noise)}, {rounded(gains['R1'])}, {rounded(gains['R2'])}; "+', '.join('yes' if gains[n]>2*noise else 'no' for n in ['R1','R2'])+f"; {100*runs['R0']['best_metrics']['empty_false_alarm_rate']:.1f}%, {100*runs['R2']['best_metrics']['empty_false_alarm_rate']:.1f}%; Changing several settings together would leave me unable to tell which one caused the result. The unchanged false-alarm rate, together with zero foreground Dice, shows no evidence that this sampler overcame the model's background bias in six epochs."
+(R/'answers.json').write_text(json.dumps(a,indent=2)+'\n');(R/'interpretation.json').write_text(json.dumps(dict(noise_unrounded=noise,gains_unrounded=gains,metric_diagnosis='foreground underfitting/background collapse; falling loss is not evidence of useful foreground learning',checkpoint_tie_rule='earliest maximum',analysis_change='Interpretation only; no training or model selection changes'),indent=2)+'\n');print(json.dumps({k:a[k] for k in ['Q8','Q10']},indent=2))
