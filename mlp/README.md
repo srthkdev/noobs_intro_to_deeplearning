@@ -25,3 +25,7 @@ python3 -m venv .venv-guide
 - `evidence/browser-verification.json`: desktop browser, interaction and offline checks.
 
 The initial EDA used the full labelled table. The guide therefore describes audit withholding accurately as applying to subsequent fitted preprocessing, training, stopping and winner selection. The final grouped holdout is distinct from the separate M3/M4 milestone studies.
+
+## Requirements and L1 preparation
+
+The Requirements section maps all ten technical declarations to their meaning, implementation, exact original code excerpts, saved outputs and a viva explanation. The authorship declaration is explicitly No because AI assistance was used. The supplied L1 mandatory tasks and 75% viva threshold are displayed separately from project completion, with six coding exercises for personal practice. `evidence/requirements-code-map.json` records every excerpt’s original cell and line range.

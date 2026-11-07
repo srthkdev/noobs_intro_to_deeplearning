@@ -1,0 +1,149 @@
+[
+  {
+    "criterion": "three-models",
+    "cell": 10,
+    "start": 7,
+    "end": 25,
+    "code": "def record(name, model, fit_data, tune_data, fit_kwargs=None):\n    start = time.perf_counter()\n    model.fit(fit_data, yf, **(fit_kwargs or {}))\n    seconds = time.perf_counter() - start\n    tr = model.predict(fit_data).reshape(-1).astype(int)\n    p = model.predict(tune_data).reshape(-1).astype(int)\n    row = dict(\n        model=name,\n        train_macro_f1=f1_score(yf, tr, average=\"macro\"),\n        tune_macro_f1=f1_score(yt, p, average=\"macro\"),\n        tune_accuracy=accuracy_score(yt, p),\n        fit_seconds=seconds,\n    )\n    rows.append(row)\n    models[name] = model\n    preds[name] = p\n    fit_seconds[name] = seconds\n    pd.DataFrame(rows).to_csv(OUT / \"model_comparison.csv\", index=False)\n    print(row, flush=True)"
+  },
+  {
+    "criterion": "three-models",
+    "cell": 10,
+    "start": 28,
+    "end": 54,
+    "code": "record(\n    \"linear_log_loss\",\n    SGDClassifier(\n        loss=\"log_loss\",\n        alpha=1e-4,\n        max_iter=1000,\n        tol=1e-4,\n        early_stopping=False,\n        random_state=SEED,\n        n_jobs=4,\n    ),\n    Zf,\n    Zt,\n)\nrecord(\n    \"extra_trees\",\n    ExtraTreesClassifier(\n        n_estimators=80,\n        max_depth=20,\n        min_samples_leaf=5,\n        max_features=\"sqrt\",\n        n_jobs=4,\n        random_state=SEED,\n    ),\n    Zf,\n    Zt,\n)"
+  },
+  {
+    "criterion": "three-models",
+    "cell": 10,
+    "start": 73,
+    "end": 102,
+    "code": "for name, leaves, child in [\n    (\"lightgbm_63\", 63, 50),\n    (\"lightgbm_31_regularized\", 31, 100),\n]:\n    model = LGBMClassifier(\n        n_estimators=2000,\n        learning_rate=0.04,\n        num_leaves=leaves,\n        min_child_samples=child,\n        colsample_bytree=0.9,\n        subsample=0.9,\n        subsample_freq=1,\n        reg_lambda=2.0,\n        reg_alpha=0.1,\n        random_state=SEED,\n        n_jobs=4,\n        verbosity=-1,\n        metric=\"None\",\n    )\n    record(\n        name,\n        model,\n        Lf,\n        Lt,\n        dict(\n            eval_set=[(Lt, yt)],\n            eval_metric=macro_f1_metric,\n            callbacks=[early_stopping(100), log_evaluation(200)],\n        ),\n    )"
+  },
+  {
+    "criterion": "three-models",
+    "cell": 10,
+    "start": 112,
+    "end": 134,
+    "code": "record(\n    \"catboost\",\n    CatBoostClassifier(\n        iterations=1200,\n        depth=7,\n        learning_rate=0.06,\n        loss_function=\"MultiClass\",\n        eval_metric=\"TotalF1:average=Macro\",\n        l2_leaf_reg=5,\n        random_seed=SEED,\n        thread_count=4,\n        verbose=200,\n        allow_writing_files=False,\n    ),\n    cb_frame(F),\n    cb_frame(T),\n    dict(\n        cat_features=M2_CATS,\n        eval_set=(cb_frame(T), yt),\n        early_stopping_rounds=100,\n        use_best_model=True,\n    ),\n)"
+  },
+  {
+    "criterion": "eda",
+    "cell": 4,
+    "start": 1,
+    "end": 20,
+    "code": "X = train.drop(columns=\"price_tier\")\ny = train.price_tier.astype(int)\nprint(\"Duplicate identifiers:\", X.space_id.duplicated().sum())\nprint(\"Duplicate predictor profiles:\", X.drop(columns=\"space_id\").duplicated().sum())\ndisplay(\n    pd.DataFrame(\n        {\"dtype\": X.dtypes.astype(str), \"missing_fraction\": X.isna().mean()}\n    ).sort_values(\"missing_fraction\", ascending=False)\n)\nfig, axes = plt.subplots(1, 3, figsize=(15, 4))\ny.value_counts().sort_index().plot.bar(ax=axes[0], title=\"Label balance\")\naxes[0].set_xlabel(\"Price tier\")\nX.isna().mean().nlargest(12).sort_values().plot.barh(\n    ax=axes[1], title=\"Largest missing fractions\"\n)\nsns.boxplot(data=train, x=\"price_tier\", y=\"max_seats\", showfliers=False, ax=axes[2])\naxes[2].set_title(\"Capacity by price tier\")\nplt.tight_layout()\nplt.savefig(OUT / \"eda.png\", dpi=150)\nplt.show()"
+  },
+  {
+    "criterion": "eda",
+    "cell": 4,
+    "start": 21,
+    "end": 30,
+    "code": "cat_cols = [\"metro\", \"space_class\", \"access_type\"]\nfor col in cat_cols:\n    display(pd.crosstab(train[col], y, normalize=\"index\").round(3).head(15))\nnum = train.select_dtypes(\"number\").drop(columns=[\"space_id\", \"price_tier\"])\nplt.figure(figsize=(12, 9))\nsns.heatmap(num.corr(), cmap=\"vlag\", center=0)\nplt.title(\"Numeric feature relationships\")\nplt.tight_layout()\nplt.savefig(OUT / \"correlations.png\", dpi=150)\nplt.show()"
+  },
+  {
+    "criterion": "analysis",
+    "cell": 12,
+    "start": 1,
+    "end": 31,
+    "code": "Za = preprocess.transform(A)\naudit_rows = []\nfor name, model in models.items():\n    if name.startswith(\"lightgbm\"):\n        matrix = lgb_frame(A, cat_levels)\n    elif name == \"catboost\":\n        matrix = cb_frame(A)\n    else:\n        matrix = Za\n    p = model.predict(matrix).reshape(-1).astype(int)\n    audit_rows.append(\n        dict(\n            model=name,\n            audit_macro_f1=f1_score(ya, p, average=\"macro\"),\n            audit_accuracy=accuracy_score(ya, p),\n        )\n    )\n    if name == winner:\n        audit_pred = p\n        audit_matrix = matrix\ncomparison = comparison.merge(pd.DataFrame(audit_rows), on=\"model\")\ncomparison.to_csv(OUT / \"model_comparison.csv\", index=False)\ndisplay(comparison)\nprint(classification_report(ya, audit_pred, digits=4, zero_division=0))\nConfusionMatrixDisplay.from_predictions(\n    ya, audit_pred, normalize=\"true\", values_format=\".2f\"\n)\nplt.title(\"Frozen selected model: audit recall by tier\")\nplt.tight_layout()\nplt.savefig(OUT / \"audit_confusion.png\", dpi=150)\nplt.show()"
+  },
+  {
+    "criterion": "tuning",
+    "cell": 10,
+    "start": 73,
+    "end": 102,
+    "code": "for name, leaves, child in [\n    (\"lightgbm_63\", 63, 50),\n    (\"lightgbm_31_regularized\", 31, 100),\n]:\n    model = LGBMClassifier(\n        n_estimators=2000,\n        learning_rate=0.04,\n        num_leaves=leaves,\n        min_child_samples=child,\n        colsample_bytree=0.9,\n        subsample=0.9,\n        subsample_freq=1,\n        reg_lambda=2.0,\n        reg_alpha=0.1,\n        random_state=SEED,\n        n_jobs=4,\n        verbosity=-1,\n        metric=\"None\",\n    )\n    record(\n        name,\n        model,\n        Lf,\n        Lt,\n        dict(\n            eval_set=[(Lt, yt)],\n            eval_metric=macro_f1_metric,\n            callbacks=[early_stopping(100), log_evaluation(200)],\n        ),\n    )"
+  },
+  {
+    "criterion": "tuning",
+    "cell": 10,
+    "start": 135,
+    "end": 138,
+    "code": "comparison = pd.DataFrame(rows).sort_values(\"tune_macro_f1\", ascending=False)\ndisplay(comparison)\nwinner = comparison.iloc[0].model\nprint(\"Frozen selection from tuning data:\", winner)"
+  },
+  {
+    "criterion": "structure",
+    "cell": 10,
+    "start": 55,
+    "end": 63,
+    "code": "# Categoricals share a fitting-only category vocabulary, including explicit missing.\ncat_levels = {c: sorted(F[c].unique()) for c in M2_CATS}\n\n\ndef lgb_frame(frame, levels):\n    out = frame.copy()\n    for c in M2_CATS:\n        out[c] = pd.Categorical(out[c], categories=levels[c])\n    return out"
+  },
+  {
+    "criterion": "structure",
+    "cell": 10,
+    "start": 105,
+    "end": 109,
+    "code": "# Missing numerical values have an explicit sentinel; native strings remain categories.\ndef cb_frame(frame):\n    out = frame.copy()\n    out[numeric] = out[numeric].fillna(-999)\n    return out"
+  },
+  {
+    "criterion": "engineering",
+    "cell": 8,
+    "start": 96,
+    "end": 110,
+    "code": "        out[\"extreme_max_term\"] = X.max_term_days.gt(36500).astype(\"float32\")\n        out[\"min_exceeds_max_term\"] = X.min_term_days.gt(X.max_term_days).astype(\n            \"float32\"\n        )\n        out[\"no_reviews\"] = X.review_count.eq(0).astype(\"float32\")\n        out[\"platform_age_total_months\"] = np.log1p(\n            numeric.operator_platform_age_years * 12\n            + numeric.operator_platform_age_months\n        )\n        out[\"active_age_total_months\"] = np.log1p(\n            numeric.operator_active_years * 12 + numeric.operator_active_months\n        )\n        out[\"log_seats_per_workstation\"] = np.log1p(\n            numeric.max_seats / numeric.workstations.replace(0, np.nan)\n        )"
+  },
+  {
+    "criterion": "engineering",
+    "cell": 8,
+    "start": 127,
+    "end": 149,
+    "code": "        intervals = {\n            \"snapshot_span_days\": (\"snapshot_end_date\", \"snapshot_start_date\"),\n            \"days_since_first_review\": (\"snapshot_start_date\", \"first_review_date\"),\n            \"days_since_last_review\": (\"snapshot_start_date\", \"last_review_date\"),\n            \"review_history_days\": (\"last_review_date\", \"first_review_date\"),\n        }\n        for name, (end, start) in intervals.items():\n            days = (dates[end] - dates[start]).dt.total_seconds() / 86400\n            out[name] = np.sign(days) * np.log1p(days.abs())\n            out[name + \"_negative\"] = days.lt(0).astype(\"float32\")\n        parsed = X.facilities.map(m2_parse_facilities)\n        out[\"facility_count\"] = np.log1p(parsed.map(lambda x: len(x[0])))\n        out[\"facilities_malformed\"] = parsed.map(lambda x: x[1]).astype(\"float32\")\n        out[\"facilities_missing\"] = X.facilities.isna().astype(\"float32\")\n        hot = np.zeros((len(X), len(self.facility_vocab_)), dtype=np.float32)\n        for i, (values, bad) in enumerate(parsed):\n            for v in values:\n                if v in self.facility_index_:\n                    hot[i, self.facility_index_[v]] = 1.0\n        hot_frame = pd.DataFrame(\n            hot, index=X.index, columns=[\"facility__\" + v for v in self.facility_vocab_]\n        )\n        out = pd.concat([out.astype(\"float32\"), hot_frame], axis=1)"
+  },
+  {
+    "criterion": "pipelines",
+    "cell": 8,
+    "start": 163,
+    "end": 184,
+    "code": "preprocess = ColumnTransformer(\n    [\n        (\n            \"numeric\",\n            Pipeline(\n                [\n                    (\"impute\", SimpleImputer(strategy=\"median\", add_indicator=True)),\n                    (\"scale\", StandardScaler()),\n                ]\n            ),\n            numeric,\n        ),\n        (\n            \"category\",\n            OneHotEncoder(handle_unknown=\"ignore\", min_frequency=20, dtype=np.float32),\n            M2_CATS,\n        ),\n    ],\n    sparse_threshold=1.0,\n)\nZf = preprocess.fit_transform(F)\nZt = preprocess.transform(T)"
+  },
+  {
+    "criterion": "encoding",
+    "cell": 8,
+    "start": 175,
+    "end": 184,
+    "code": "        (\n            \"category\",\n            OneHotEncoder(handle_unknown=\"ignore\", min_frequency=20, dtype=np.float32),\n            M2_CATS,\n        ),\n    ],\n    sparse_threshold=1.0,\n)\nZf = preprocess.fit_transform(F)\nZt = preprocess.transform(T)"
+  },
+  {
+    "criterion": "encoding",
+    "cell": 10,
+    "start": 55,
+    "end": 66,
+    "code": "# Categoricals share a fitting-only category vocabulary, including explicit missing.\ncat_levels = {c: sorted(F[c].unique()) for c in M2_CATS}\n\n\ndef lgb_frame(frame, levels):\n    out = frame.copy()\n    for c in M2_CATS:\n        out[c] = pd.Categorical(out[c], categories=levels[c])\n    return out\n\n\nLf, Lt = lgb_frame(F, cat_levels), lgb_frame(T, cat_levels)"
+  },
+  {
+    "criterion": "missing",
+    "cell": 4,
+    "start": 5,
+    "end": 9,
+    "code": "display(\n    pd.DataFrame(\n        {\"dtype\": X.dtypes.astype(str), \"missing_fraction\": X.isna().mean()}\n    ).sort_values(\"missing_fraction\", ascending=False)\n)"
+  },
+  {
+    "criterion": "missing",
+    "cell": 8,
+    "start": 160,
+    "end": 171,
+    "code": "for frame in [F, T, A]:\n    for c in M2_CATS:\n        frame[c] = frame[c].fillna(\"__MISSING__\").astype(str)\npreprocess = ColumnTransformer(\n    [\n        (\n            \"numeric\",\n            Pipeline(\n                [\n                    (\"impute\", SimpleImputer(strategy=\"median\", add_indicator=True)),\n                    (\"scale\", StandardScaler()),\n                ]"
+  },
+  {
+    "criterion": "missing",
+    "cell": 10,
+    "start": 105,
+    "end": 109,
+    "code": "# Missing numerical values have an explicit sentinel; native strings remain categories.\ndef cb_frame(frame):\n    out = frame.copy()\n    out[numeric] = out[numeric].fillna(-999)\n    return out"
+  },
+  {
+    "criterion": "findings",
+    "cell": 4,
+    "start": 21,
+    "end": 26,
+    "code": "cat_cols = [\"metro\", \"space_class\", \"access_type\"]\nfor col in cat_cols:\n    display(pd.crosstab(train[col], y, normalize=\"index\").round(3).head(15))\nnum = train.select_dtypes(\"number\").drop(columns=[\"space_id\", \"price_tier\"])\nplt.figure(figsize=(12, 9))\nsns.heatmap(num.corr(), cmap=\"vlag\", center=0)"
+  },
+  {
+    "criterion": "findings",
+    "cell": 12,
+    "start": 32,
+    "end": 45,
+    "code": "errors = Xa[[\"space_id\", \"metro\", \"space_class\", \"max_seats\", \"review_count\"]].copy()\nerrors[\"truth\"] = ya\nerrors[\"predicted\"] = audit_pred\nerrors[\"error\"] = errors.truth.ne(errors.predicted)\nerrors.to_csv(OUT / \"audit_predictions.csv\", index=False)\nfor col in [\"metro\", \"space_class\"]:\n    display(\n        errors.groupby(col, dropna=False)\n        .agg(count=(\"error\", \"size\"), error_rate=(\"error\", \"mean\"))\n        .query(\"count>=100\")\n        .sort_values(\"error_rate\", ascending=False)\n        .head(12)\n    )\ndisplay(errors[errors.error].head(12))"
+  }
+]

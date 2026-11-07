@@ -1,0 +1,14 @@
+{
+  "counts": {
+    "criteria": 10,
+    "excerpts": 21,
+    "practice": 6,
+    "originalCells": 15,
+    "originalCodeCells": 7,
+    "originalOutputs": 25
+  },
+  "matchedExcerpts": 21,
+  "brokenAnchors": [],
+  "duplicateIds": [],
+  "errors": []
+}
