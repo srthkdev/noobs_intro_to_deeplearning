@@ -1,31 +1,18 @@
-# MLP final notebook — single-page viva guide
+# MLP viva study guide
 
-**[Read online](https://srthkdev.github.io/noobs_intro_to_deeplearning/mlp/)**
+[Read online](https://srthkdev.github.io/noobs_intro_to_deeplearning/mlp/)
 
-The complete executed final notebook is the centre of this continuous HTML page. All 15 original cells, seven code cells and 25 saved output items appear in order. Each code cell has what/why/how notes, relevant concepts, original-line jump links, output explanations and a viva answer. Code is visible by default; long cells have scroll panels and an expand control.
+Updated 15 November 2026. One continuous HTML page includes:
 
-The page also includes 40 linked concepts, 35 viva questions, original EDA/diagnostic plots, the recorded five-configuration comparison and an interactive confusion matrix. Its exact aggregate counts reproduce the recorded audit macro F1. Scores distinguish tuning, audit and the actual registered version-3 Kaggle code submission.
+- The learner's January and May L1 feedback, the general-feedback pointers and explanations.
+- Current official L2 requirements, a five-minute presentation outline and preparation questions.
+- Feature engineering, preprocessing, model comparison, tuning, CV and limitations.
+- Confusion-matrix formulas, hinge/log loss, gradients, regularisation and early stopping.
+- Interactive aggregate confusion matrix, preprocessing/CV diagrams and coding practice.
+- An evidence map linking to the private final Kaggle notebook.
 
-`project/notebooks/final.ipynb` is copied byte for byte from the executed archive. `project/reports/final-results/` contains the original final results. No fitting or notebook execution is performed to build the guide. The full audit-predictions CSV is not distributed; `evidence/audit-confusion.json` contains aggregate counts and the source file hash.
+`index.html` is self-contained and works offline. External official references and private Kaggle access require a connection/sign-in.
 
-The generated `index.html` embeds its styles, scripts and original images. It works offline when opened directly. External documentation/Kaggle links and separate source-file links require their destinations, but the entire study content is already on the page.
+The actual notebook code and saved notebook outputs are not embedded in this public page. The older notebook download and legacy notebook-rendering sources have been removed from the current published tree; this does not rewrite earlier Git history. The full executed study reader remains available locally in the private project checkout.
 
-Rebuild from the repository root:
-
-```sh
-python3 -m venv .venv-guide
-.venv-guide/bin/pip install -r mlp/requirements.txt
-.venv-guide/bin/python mlp/build_page.py
-```
-
-- `content.py`: cell explanations, concept glossary and viva questions.
-- `template.html`, `style.css`, `script.js`: continuous-page design and interactions.
-- `build_page.py`: static Jupyter nbconvert rendering and original-source checks.
-- `evidence/source-manifest.json`, `render-verification.json`: provenance and cell/output checks.
-- `evidence/browser-verification.json`: desktop browser, interaction and offline checks.
-
-The initial EDA used the full labelled table. The guide therefore describes audit withholding accurately as applying to subsequent fitted preprocessing, training, stopping and winner selection. The final grouped holdout is distinct from the separate M3/M4 milestone studies.
-
-## Requirements and L1 preparation
-
-The Requirements section maps all ten technical declarations to their meaning, implementation, exact original code excerpts, saved outputs and a viva explanation. The authorship declaration is explicitly No because AI assistance was used. The supplied L1 mandatory tasks and 75% viva threshold are displayed separately from project completion, with six coding exercises for personal practice. `evidence/requirements-code-map.json` records every excerpt’s original cell and line range.
+The page is exported from the private project's `connected-workflow/export_public_reader.py` after building its reader. No model fitting runs during export. Historical aggregate files under `project/reports/` and `evidence/` belong to the earlier guide and should not be confused with the current executed workflow described on the page.

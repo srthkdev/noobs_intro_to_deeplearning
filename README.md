@@ -10,4 +10,4 @@ repo consists of jupyter notebooks, resources, roadmaps, practise code i have do
 
 ## MLP final notebook viva guide
 
-[Open the single-page MLP guide](https://srthkdev.github.io/noobs_intro_to_deeplearning/mlp/) — the complete executed final notebook with explanations beside its code and saved outputs, model results, concepts and viva questions. [Source and rebuild instructions](mlp/README.md).
+[Open the single-page MLP guide](https://srthkdev.github.io/noobs_intro_to_deeplearning/mlp/) — the updated viva study guide with your L1 feedback, L2 preparation, model concepts, metrics, diagrams and practice. The actual notebook stays private, with an evidence map linking to Kaggle. [Source and rebuild instructions](mlp/README.md).
